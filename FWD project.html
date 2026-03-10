@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Career Stability Assessment System</title>
+
+<style>
+
+body{
+font-family: Arial, sans-serif;
+background: linear-gradient(to right,#0f172a,#1e293b);
+color:white;
+text-align:center;
+padding:40px;
+}
+
+.container{
+width:420px;
+margin:auto;
+background:#1e293b;
+padding:30px;
+border-radius:12px;
+box-shadow:0 0 20px rgba(0,0,0,0.6);
+}
+
+h1{
+color:#38bdf8;
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-top:15px;
+text-align:left;
+font-weight:bold;
+}
+
+select{
+width:100%;
+padding:10px;
+margin-top:5px;
+border-radius:6px;
+border:none;
+}
+
+button{
+margin-top:20px;
+padding:12px;
+width:100%;
+border:none;
+border-radius:6px;
+background:#38bdf8;
+color:black;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#0ea5e9;
+}
+
+.result{
+margin-top:20px;
+padding:15px;
+background:#334155;
+border-radius:10px;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Career Stability Assessment System</h1>
+
+<label>Automation Level of Career</label>
+<select id="automation">
+<option value="">Select Option</option>
+<option value="3">High Automation Risk</option>
+<option value="2">Moderate Automation Risk</option>
+<option value="1">Low Automation Risk</option>
+</select>
+
+<label>Skill Diversity</label>
+<select id="skill">
+<option value="">Select Option</option>
+<option value="1">Multiple Skills</option>
+<option value="2">Limited Skills</option>
+<option value="3">Single Skill</option>
+</select>
+
+<label>Learning Rate</label>
+<select id="learning">
+<option value="">Select Option</option>
+<option value="1">Fast Learner</option>
+<option value="2">Average Learner</option>
+<option value="3">Slow Learner</option>
+</select>
+
+<button onclick="calculateStability()">Check Career Stability</button>
+
+<div class="result" id="output"></div>
+
+</div>
+
+<script>
+
+function calculateStability(){
+
+var automation=parseInt(document.getElementById("automation").value);
+var skill=parseInt(document.getElementById("skill").value);
+var learning=parseInt(document.getElementById("learning").value);
+
+if(isNaN(automation)||isNaN(skill)||isNaN(learning)){
+document.getElementById("output").innerHTML="Please select all options.";
+return;
+}
+
+/* Using Array (DSA concept) */
+
+var factors=[automation,skill,learning];
+
+var total=0;
+
+for(var i=0;i<factors.length;i++){
+total+=factors[i];
+}
+
+var result="";
+
+if(total<=4){
+result="Low Fragility (Stable Career)";
+}
+else if(total<=6){
+result="Medium Fragility (Moderate Risk)";
+}
+else{
+result="High Fragility (High Risk)";
+}
+
+document.getElementById("output").innerHTML=
+"<b>Total Score :</b> "+total+
+"<br><br><b>Career Stability Level :</b> "+result;
+
+}
+
+</script>
+
+</body>
+</html>
